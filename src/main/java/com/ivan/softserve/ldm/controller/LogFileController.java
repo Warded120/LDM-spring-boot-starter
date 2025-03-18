@@ -64,7 +64,7 @@ public class LogFileController {
             description = "Filters for logs",
             name = "LogFileFilterDto",
             type = "object",
-            example = LogFileFilterDto.defaultJson) @RequestBody @Valid LogFileFilterDto filterDto,
+            example = LogFileFilterDto.defaultJson) @RequestBody @NotNull @Valid LogFileFilterDto filterDto,
         @Parameter(hidden = true) Pageable page) {
         return ResponseEntity.status(HttpStatus.OK)
             .body(logFileService.listLogFiles(page, filterDto, secretKey));
