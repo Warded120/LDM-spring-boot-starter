@@ -1,9 +1,12 @@
 package com.ivan.softserve.ldm.config;
 
+import com.ivan.softserve.ldm.controller.LogFileController;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.ComponentScan;
 
 @AutoConfiguration
-@ComponentScan(basePackages = "com.ivan.softserve.ldm")
+@ConditionalOnClass(LogFileController.class)
+@ComponentScan(basePackageClasses = {LogFileController.class})
 public class LDMAutoConfiguration {
 }
