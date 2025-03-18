@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.ivan.softserve</groupId>
 	<artifactId>ldm-spring-boot-starter</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>LDM-spring-boot-starter</name>
 	<description>Logging and database manager starter</description>
 	<url/>
@@ -25,18 +25,17 @@
 		<!-- Chernenko Vitaliy -->
 	</developers>
 
-	<!-- TODO: update repo details -->
 	<scm>
-		<connection>scm:git:git://github.com/Warded120/REPO.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com:Warded120/REPO.git</developerConnection>
+		<connection>scm:git:git://github.com/Warded120/LDM-spring-boot-starter.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:Warded120/LDM-spring-boot-starter.git</developerConnection>
 		<tag>HEAD</tag>
-		<url>https://github.com/Warded120/REPO</url>
+		<url>https://github.com/Warded120/LDM-spring-boot-starter</url>
 	</scm>
 
 	<distributionManagement>
 		<repository>
 			<id>github</id>
-			<url>https://maven.pkg.github.com/Warded120/REPO</url>
+			<url>https://maven.pkg.github.com/Warded120/LDM-spring-boot-starter</url>
 		</repository>
 	</distributionManagement>
 
@@ -44,6 +43,7 @@
 		<java.version>21</java.version>
 		<lombok.version>1.18.30</lombok.version>
 		<io.github.cdimascio.dotenv.version>3.1.0</io.github.cdimascio.dotenv.version>
+		<openapi.version>2.7.0</openapi.version>
 	</properties>
 
 	<dependencies>
@@ -67,7 +67,7 @@
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.7.0</version>
+			<version>${openapi.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.github.cdimascio</groupId>
