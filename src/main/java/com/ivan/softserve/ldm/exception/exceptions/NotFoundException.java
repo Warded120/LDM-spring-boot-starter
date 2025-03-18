@@ -2,12 +2,9 @@ package com.ivan.softserve.ldm.exception.exceptions;
 
 import lombok.experimental.StandardException;
 
+
 /**
- * Exception that we get when we send request(for e.x. to findById) and there is
- * no record with this id, then we get {@link NotFoundException}.
- *
- * @author Nazar Vladyka
- * @version 1.0
+ * Exception that is thrown when something (e.g. file) is not found.
  */
 @StandardException
 public class NotFoundException extends RuntimeException {

@@ -70,6 +70,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
      * @param request Contains details about the occurred exception.
      * @return {@code ResponseEntity} which contains the HTTP status and body with
      *         the exception message.
+     * @author Hrenevych Ivan
      */
     @ExceptionHandler(FileReadException.class)
     public final ResponseEntity<Object> handleFileReadException(FileReadException ex,
@@ -89,6 +90,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
      * @param request Contains details about the occurred exception.
      * @return {@code ResponseEntity} which contains the HTTP status and body with
      *         the exception message.
+     * @author Hrenevych Ivan
      */
     @ExceptionHandler(BadSecretKeyException.class)
     public final ResponseEntity<Object> handleBadSecretKeyException(BadSecretKeyException ex,
@@ -101,6 +103,15 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(exceptionResponse);
     }
 
+    /**
+     * Method intercepts exception {@link FunctionalityNotAvailableException}.
+     *
+     * @param ex      Exception that should be intercepted.
+     * @param request Contains details about the occurred exception.
+     * @return {@code ResponseEntity} which contains the HTTP status and body with
+     *         the exception message.
+     * @author Hrenevych Ivan
+     */
     @ExceptionHandler(FunctionalityNotAvailableException.class)
     public final ResponseEntity<Object> handleFunctionalityNotAvailableException(FunctionalityNotAvailableException ex,
         WebRequest request) {
