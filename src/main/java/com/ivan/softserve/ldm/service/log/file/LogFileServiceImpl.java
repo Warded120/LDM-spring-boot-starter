@@ -11,12 +11,10 @@ import com.ivan.softserve.ldm.exception.exceptions.NotFoundException;
 import com.ivan.softserve.ldm.service.dotenv.DotenvService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.logging.LogLevel;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -30,7 +28,6 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 @Service
-@Lazy
 @RequiredArgsConstructor
 public class LogFileServiceImpl implements LogFileService {
     private static final String LOGS_DIRECTORY =

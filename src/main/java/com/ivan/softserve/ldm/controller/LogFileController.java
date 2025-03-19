@@ -4,7 +4,6 @@ import com.ivan.softserve.ldm.annotations.ApiPageable;
 import com.ivan.softserve.ldm.constant.HttpStatuses;
 import com.ivan.softserve.ldm.dto.PageableDto;
 import com.ivan.softserve.ldm.dto.logs.LogFileMetadataDto;
-import com.ivan.softserve.ldm.dto.logs.LogFileRequestDto;
 import com.ivan.softserve.ldm.dto.logs.filter.LogFileFilterDto;
 import com.ivan.softserve.ldm.service.dotenv.DotenvService;
 import com.ivan.softserve.ldm.service.log.file.LogFileService;
@@ -17,7 +16,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -25,6 +23,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,7 +34,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Validated
-@Lazy
 @RequestMapping("/logs")
 public class LogFileController {
     private final LogFileService logFileService;
@@ -83,7 +82,7 @@ public class LogFileController {
         @ApiResponse(responseCode = "503", description = HttpStatuses.SERVICE_UNAVAILABLE,
             content = @Content(examples = @ExampleObject(HttpStatuses.SERVICE_UNAVAILABLE)))
     })
-    @PostMapping("/view/{filename}")
+    @GetMapping("/view/{filename}")
     public ResponseEntity<String> viewLogFileContent(
         @RequestHeader @NotNull String secretKey,
         @PathVariable String filename) {
@@ -102,7 +101,7 @@ public class LogFileController {
         @ApiResponse(responseCode = "404", description = HttpStatuses.NOT_FOUND,
             content = @Content(examples = @ExampleObject(HttpStatuses.NOT_FOUND)))
     })
-    @PostMapping("/download/{filename}")
+    @GetMapping("/download/{filename}")
     public ResponseEntity<Resource> downloadLogFile(
         @RequestHeader @NotNull String secretKey,
         @PathVariable String filename) {
@@ -114,10 +113,7 @@ public class LogFileController {
             .body(logFileService.generateDownloadLogFileUrl(logFileService.sanitizeFilename(filename), secretKey));
     }
 
-    @Operation(summary = "deletes '.env' file to make functionality that is dependent on it unavailable",
-        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
-            content = @Content(mediaType = "text/plain",
-                schema = @Schema(type = "string"))))
+    @Operation(summary = "deletes '.env' file to make functionality that is dependent on it unavailable")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = HttpStatuses.OK,
             content = @Content(schema = @Schema(example = HttpStatuses.OK))),
@@ -126,7 +122,7 @@ public class LogFileController {
         @ApiResponse(responseCode = "403", description = HttpStatuses.FORBIDDEN,
             content = @Content(examples = @ExampleObject(HttpStatuses.FORBIDDEN)))
     })
-    @PostMapping("/delete-dotenv")
+    @DeleteMapping("/delete-dotenv")
     public ResponseEntity<Object> deleteDotenvFile(
         @RequestHeader @NotNull String secretKey) {
         dotenvService.deleteDotenvFile(secretKey);

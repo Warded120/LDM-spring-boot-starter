@@ -24,7 +24,7 @@ import java.util.Map;
 @AllArgsConstructor
 @RestControllerAdvice
 @Slf4j
-public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
+public class LdmExceptionHandler extends ResponseEntityExceptionHandler {
     private ErrorAttributes errorAttributes;
 
     private Map<String, Object> getErrorAttributes(WebRequest webRequest) {

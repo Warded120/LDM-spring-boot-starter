@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class LdmSecurityConfig {
-    @Bean
+    @Bean("ldm-passwordEncoder")
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
