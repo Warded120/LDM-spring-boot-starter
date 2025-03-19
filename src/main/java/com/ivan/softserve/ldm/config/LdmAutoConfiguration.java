@@ -5,5 +5,5 @@ import org.springframework.context.annotation.ComponentScan;
 
 @AutoConfiguration
 @ComponentScan(basePackages = "com.ivan.softserve.ldm")
-public class LDMAutoConfiguration {
+public class LdmAutoConfiguration {
 }
